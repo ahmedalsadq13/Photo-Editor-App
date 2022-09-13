@@ -1,0 +1,88 @@
+.home{
+    background-color: #1a0818;
+    position: relative;
+    // Main Header
+    .main-header{        
+        position: absolute;
+        width: 80%;
+        left: 10%;
+        margin: 20px auto;           
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+        a{            
+            color: #FFF;
+            text-transform: capitalize;            
+        }
+    
+        ul{
+            display: flex;
+            font-size: 2rem;                            
+            li{
+                margin-right: 20px;
+                a{
+                    padding:15px;
+                    position: relative;
+                    &:hover, &.active{
+                        &::after{
+                            width:calc(100% - 30px);
+                        }
+                    }
+                    &::after{
+                        position: absolute;
+                        content: '';
+                        left:15px;
+                        bottom:0;
+                        width:0;
+                        height:3px;
+                        background-color: #Fff;
+                        transition: .4s;
+
+
+                    }
+
+                }
+
+            }
+
+        }
+    }
+
+    // Main Section -> for Effects
+    .main{
+        position: relative;
+        width:100%;
+        height:100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;  
+        overflow: hidden;  
+        transition: .4s;
+        .novel{
+            color: #FFF;
+            transform: translateY(-170px);
+        }
+        img{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            &#moon{
+                mix-blend-mode: screen;
+                transform: translateY(100px);
+
+            }
+        }
+    }
+    .content{
+        padding-block:5rem;
+        h2{color: #f2f2f2}
+        p{
+            color: #FFf;
+            line-height: 2;
+            margin-bottom: 4rem
+        }
+
+    }
+}
