@@ -16,7 +16,55 @@
     
 </head>
 <body>
-    <div class="mian">       
+    <div class="main">       
+        <div class="img">
+            <div class="img-box">
+                <img id='img'>
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="upload">
+                <label for="upload">Upload</label>
+                <input type="file" id="upload">
+            </div>
+        </div>
+        <div class="filters">
+            <ul>
+                <li>
+                    <label for="saturate">Saturate</label>
+                    <input type="range" min="0" max="200" value="100" id="saturate">
+                </li>
+                <li>
+                    <label for="contrast">contrast</label>
+                    <input type="range" min="0" max="200" value="100" id="contrast">
+                </li>
+                <li>
+                    <label for="brightness">brightness</label>
+                    <input type="range" min="0" max="200" value="100" id="brightness">
+                </li>
+                <li>
+                    <label for="sepia">sepia</label>
+                    <input type="range" min="0" max="200" value="0" id="sepia">
+                </li>
+                <li>
+                    <label for="grayscale">grayscale</label>
+                    <input type="range" step="0.1" min="0" max="1" value="0"  id="grayscale">
+                </li>
+                <li>
+                    <label for="blur">blur</label>
+                    <input type="range" step="0.1" min="0" max="10" value="0"  id="blur">
+                </li>
+                <li>
+                    <label for="hue-rotate">hue-rotate</label>
+                    <input type="range" min="0" max="350" value="0"  id="hue-rotate">
+                </li>
+                <li>
+
+                    <a class= "btn" href="" download="Photo-editor" id="download">download</a>
+                    <button class="btn reset" onclick="resetValue()">reset</button>
+
+                </li>
+            </ul>
+        </div>
     </div>
     
     <script src="js/main.js"></script>

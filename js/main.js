@@ -1,37 +1,84 @@
-const stars = document.getElementById('stars') ;
-const moon = document.getElementById('moon') ;
-const mountain3 = document.getElementById('mountains3') ;
-const mountain4 = document.getElementById('mountains4') ;
-const river = document.getElementById('river') ;
-const boat = document.getElementById('boat') ;
-const novel = document.querySelector('.novel') ;
-const main = document.querySelector('.main');
+const saturate = document.getElementById('saturate');
+const contrast = document.getElementById('contrast');
+const brightness = document.getElementById('brightness');
+const sepia = document.getElementById('sepia');
+const grayscale = document.getElementById('grayscale');
+const blur = document.getElementById('blur');
+const hueRotate = document.getElementById('hue-rotate');
 
-window.onscroll = ()=>{
-    let value = scrollY;
-    stars.style.left = `${value}px`;
-    moon.style.top = `${value * 4}px`;
-    mountain3.style.top = `${value * 2}px`;
-    mountain4.style.top = `${value * 1.5}px`;
-    river.style.top = `${value}px`;
-    boat.style.top = `${value}px`;
-    boat.style.left = `${value * 3}px`;
-    novel.style.fontSize = `${value}px`;
-    if(scrollY >= 80 ) {
-        novel.style.fontSize = `80px`;        
-        novel.style.position = `fixed`;        
-        if(scrollY>= 600){
-            novel.style.display = 'none';
-        }else {
+const upload = document.getElementById('upload');
+const download = document.getElementById('download');
+const img = document.getElementById('img');
 
-            novel.style.display = 'block';
-        }
-        if(scrollY >= 150){
-            main.style.background = `linear-gradient(360deg, #6bb2fb, black)`;
-        } else {
-            main.style.background = ``;
+const reset = document.querySelector('.reset');
+const imgBox = document.querySelector('.img-box');
 
-        }
+const canvas = document.getElementById('canvas');
+
+const ctx = canvas.getContext('2d')
+
+
+resetValue = ()=>{
+    img.style.filter = `none`;
+    ctx.filter = `none`;
+    saturate.value = '100';
+    brightness.value = '100';
+    contrast.value = '100';
+    sepia.value = '0';
+    grayscale.value = '0';
+    blur.value = '0';
+    hueRotate.value = '0';
+}
+
+window.onload = ()=>{
+    [download, reset, imgBox].map(item=>item.style.display = `none`)
+}
+
+upload.onchange = ()=>{
+    resetValue();
+    [download, reset, imgBox].map(item=>item.style.display = `block`);
+
+    let file = new FileReader();
+    file.readAsDataURL(upload.files[0]);
+    file.onload = _=>img.src = file.result;
+
+    img.onload = ()=>{
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img,0,0, canvas.width, canvas.height);
+        img.style.display = `none`
     }
+    
+}
 
-} 
+let filters = document.querySelectorAll('ul li input');
+
+filters.forEach(filter=>{
+    filter.addEventListener('input', ()=>{
+       /*  img.style.filter =`
+            saturate(${saturate.value}%)
+            contrast(${contrast.value}%)
+            brightness(${brightness.value}%)
+            sepia(${sepia.value}%)
+            grayscale(${grayscale.value})
+            blur(${blur.value}px)
+            hue-rotate(${hueRotate.value}deg)
+        ` */
+
+        ctx.filter =`
+            saturate(${saturate.value}%)
+            contrast(${contrast.value}%)
+            brightness(${brightness.value}%)
+            sepia(${sepia.value}%)
+            grayscale(${grayscale.value})
+            blur(${blur.value}px)
+            hue-rotate(${hueRotate.value}deg)
+        `
+        ctx.drawImage(img,0,0, canvas.width, canvas.height);
+    })
+});
+
+
+download.onclick = ()=>{
+    download.href = canvas.toDataURL('image/jpeg');
+}

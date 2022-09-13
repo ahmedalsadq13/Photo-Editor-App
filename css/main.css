@@ -144,6 +144,7 @@ a {
   background-color: white;
   border: none;
   transition: all 0.4s;
+  text-transform: capitalize;
 }
 .btn:disabled:hover {
   cursor: not-allowed;
@@ -172,82 +173,128 @@ a {
   color: white;
 }
 
-.home {
-  background-color: #1a0818;
-  position: relative;
-}
-.home .main-header {
-  position: absolute;
-  width: 80%;
-  left: 10%;
-  margin: 20px auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10;
-}
-.home .main-header a {
-  color: #FFF;
-  text-transform: capitalize;
-}
-.home .main-header ul {
-  display: flex;
-  font-size: 2rem;
-}
-.home .main-header ul li {
-  margin-right: 20px;
-}
-.home .main-header ul li a {
-  padding: 15px;
-  position: relative;
-}
-.home .main-header ul li a:hover::after, .home .main-header ul li a.active::after {
-  width: calc(100% - 30px);
-}
-.home .main-header ul li a::after {
-  position: absolute;
-  content: "";
-  left: 15px;
-  bottom: 0;
-  width: 0;
-  height: 3px;
-  background-color: #Fff;
-  transition: 0.4s;
-}
-.home .main {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+body {
+  background-color: #333;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  transition: 0.4s;
 }
-.home .main .novel {
-  color: #FFF;
-  transform: translateY(-170px);
+
+.main {
+  background-color: #222;
+  width: 80vw;
+  padding: 4rem;
+  border-radius: 1rem;
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  font-size: 2rem;
 }
-.home .main img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+.main .img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+}
+.main .img .img-box {
+  max-width: 45vw;
+  aspect-ratio: 16/9;
+  max-height: 60vh;
+  text-align: center;
+}
+.main .img .img-box img, .main .img .img-box canvas {
+  width: 90%;
   object-fit: cover;
+  object-position: center;
 }
-.home .main img#moon {
-  mix-blend-mode: screen;
-  transform: translateY(100px);
+.main .img .upload input {
+  display: none;
 }
-.home .content {
-  padding-block: 5rem;
+.main .img .upload label {
+  color: #FFF;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  border: 0.3rem dashed #fff;
 }
-.home .content h2 {
-  color: #f2f2f2;
+@media (max-width: 1200px) {
+  .main {
+    grid-template-columns: 1fr;
+    gap: 5rem;
+  }
+  .main .img .img-box {
+    max-width: 80vw;
+  }
+  .main .img .img-box img, .main .img .img-box canvas {
+    width: 100%;
+  }
 }
-.home .content p {
-  color: #FFf;
-  line-height: 2;
-  margin-bottom: 4rem;
+@media (max-width: 800px) {
+  .main {
+    width: 100vw;
+  }
+  .main .upload {
+    margin-block: 5rem;
+  }
+}
+.main .filters input[type=range] {
+  outline: 0;
+  border: 0;
+  border-radius: 0.5rem;
+  max-width: 100%;
+  transition: box-shadow 0.2s ease-in-out;
+}
+.main .filters input[type=range] {
+  -webkit-appearance: none;
+  overflow: hidden;
+  height: 2rem;
+  background-color: #1597ff;
+}
+.main .filters input[type=range]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  height: 20px;
+  color: #444;
+  transition: box-shadow 0.2s ease-in-out;
+  display: flex;
+}
+.main .filters input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  cursor: ew-resize;
+  background: #fff;
+  box-shadow: -400px 0 0 400px rgb(196, 196, 196), 0 0 1rem 1rem rgb(211, 211, 211);
+  border-radius: 50%;
+  transition: box-shadow 0.2s ease-in-out;
+  position: relative;
+  border: 2px solid #EAE3D2;
+}
+.main .filters input[type=range]:active::-webkit-slider-thumb {
+  background: #fff;
+  border: 4px solid #004f8f;
+}
+.main .filters ul, .main .filters ul li {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.main .filters ul li {
+  direction: rtl;
+  text-align: right;
+  text-transform: capitalize;
+}
+.main .filters ul li label {
+  color: #FFF;
+}
+.main .filters ul li:last-child {
+  flex-direction: row;
+  justify-content: space-around;
+}
+.main .filters ul li:last-child a, .main .filters ul li:last-child button {
+  color: #FFF;
+  padding: 10px 20px;
+  background-color: #D1512D;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=main.css.map */
